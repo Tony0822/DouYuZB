@@ -10,15 +10,30 @@ import UIKit
 
 private let KTitleViewH: CGFloat = 40
 class HomeViewController: UIViewController {
+    
     // MARK: - 懒加载属性
-    lazy var pageTitleView : PageTitleView = {
+    fileprivate lazy var pageContentView : PageContentView = {
+        // 1.确定内容的frame
+        let contentH = KScreenH - KStatussBarH - KNavigationBarH - KTitleViewH
+        let contentFrame = CGRect(x: 0, y: KStatussBarH + KNavigationBarH + KTitleViewH, width: KScreenW, height: contentH)
+        
+        // 2.确定所有的子控制器
+        var childVcs = [UIViewController]()
+        for _ in 0..<4 {
+            let vc = UIViewController()
+            vc.view.backgroundColor = UIColor(r: CGFloat(arc4random_uniform(255)), g: CGFloat(arc4random_uniform(255)), b: CGFloat(arc4random_uniform(255)))
+            childVcs.append(vc)
+        }
+        let contentView = PageContentView(frame: contentFrame, childVcs: childVcs, parentViewController: self)
+        return contentView
+    }()
+    
+    fileprivate lazy var pageTitleView : PageTitleView = {
         let titleFrame = CGRect(x: 0, y: KStatussBarH + KNavigationBarH, width: KScreenW, height: KTitleViewH)
         let titles = ["推荐", "游戏", "娱乐", "趣玩"]
         let titleView = PageTitleView(frame: titleFrame, titles: titles)
-        titleView.backgroundColor = UIColor.red
         
         return titleView
-        
     }()
     
     // MARK: 系统回调函数
@@ -35,10 +50,18 @@ class HomeViewController: UIViewController {
 // MARK: 设置UI界面
 extension HomeViewController {
     func setupUI() {
+        // 不需要自动改变内边距
+        automaticallyAdjustsScrollViewInsets = false
+        
         // 1.设置导航栏
         setupNavigationBar()
+        
         // 2.添加titleview
         view.addSubview(pageTitleView)
+        
+        // 3.添加contentView
+        view.addSubview(pageContentView)
+        pageContentView.backgroundColor = UIColor.orange
     }
     
     private func setupNavigationBar() {
