@@ -24,7 +24,9 @@ class HomeViewController: UIViewController {
             vc.view.backgroundColor = UIColor(r: CGFloat(arc4random_uniform(255)), g: CGFloat(arc4random_uniform(255)), b: CGFloat(arc4random_uniform(255)))
             childVcs.append(vc)
         }
+        
         let contentView = PageContentView(frame: contentFrame, childVcs: childVcs, parentViewController: self)
+        contentView.delegate = self as? PageContentViewDelegate
         return contentView
     }()
     
@@ -91,4 +93,11 @@ extension HomeViewController : PageTitleViewDelegate {
     }
     
 
+}
+// MARK: 遵守PageTitleViewDelegate
+extension HomeViewController : PageContentViewDelegate {
+    func pageContentView(contentView: PageContentView, progress: CGFloat, sourceIndex: Int, targetIndex: Int) {
+        pageTitleView.setTilleWithProgress(progress: progress, sourceIndex: sourceIndex, targetIndex: targetIndex)
+        
+    }
 }
