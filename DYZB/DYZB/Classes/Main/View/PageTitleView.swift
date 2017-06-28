@@ -15,6 +15,7 @@ protocol PageTitleViewDelegate : class {
 fileprivate let KScrollLineH : CGFloat = 2
 fileprivate let KNormalColor : (CGFloat, CGFloat, CGFloat) = (85, 85, 85)
 fileprivate let KSelectColor : (CGFloat, CGFloat, CGFloat) = (255, 128, 0)
+
 class PageTitleView: UIView {
 
     // MARK:- 定义属性

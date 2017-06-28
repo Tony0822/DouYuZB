@@ -14,12 +14,13 @@ class HomeViewController: UIViewController {
     // MARK: - 懒加载属性
     fileprivate lazy var pageContentView : PageContentView = { [weak self] in
         // 1.确定内容的frame
-        let contentH = KScreenH - KStatussBarH - KNavigationBarH - KTitleViewH
+        let contentH = KScreenH - KStatussBarH - KNavigationBarH - KTitleViewH - KTabbarBarH
         let contentFrame = CGRect(x: 0, y: KStatussBarH + KNavigationBarH + KTitleViewH, width: KScreenW, height: contentH)
         
         // 2.确定所有的子控制器
         var childVcs = [UIViewController]()
-        for _ in 0..<4 {
+        childVcs.append(RecommentdViewController())
+        for _ in 0..<3 {
             let vc = UIViewController()
             vc.view.backgroundColor = UIColor(r: CGFloat(arc4random_uniform(255)), g: CGFloat(arc4random_uniform(255)), b: CGFloat(arc4random_uniform(255)))
             childVcs.append(vc)

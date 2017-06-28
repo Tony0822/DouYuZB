@@ -11,6 +11,8 @@ import Foundation
 
 let KStatussBarH: CGFloat = 20
 let KNavigationBarH: CGFloat = 44
+let KTabbarBarH: CGFloat = 49
+
 
 let KScreenW = UIScreen.main.bounds.width
 let KScreenH = UIScreen.main.bounds.height
