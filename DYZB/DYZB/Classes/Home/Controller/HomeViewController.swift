@@ -95,6 +95,7 @@ extension HomeViewController : PageTitleViewDelegate {
     
 
 }
+
 // MARK: 遵守PageTitleViewDelegate
 extension HomeViewController : PageContentViewDelegate {
     func pageContentView(contentView: PageContentView, progress: CGFloat, sourceIndex: Int, targetIndex: Int) {
