@@ -27,7 +27,7 @@ class HomeViewController: UIViewController {
         }
         
         let contentView = PageContentView(frame: contentFrame, childVcs: childVcs, parentViewController: self)
-        contentView.delegate = self as? PageContentViewDelegate
+        contentView.delegate = self
         return contentView
     }()
     
